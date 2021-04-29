@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './registration.scss';
+import './authorization.scss';
 import Input from '../../utils/input/Input';
 import {registration} from '../../api/user';
 
@@ -11,8 +11,8 @@ const Registration: React.FC = () => {
   console.log('password', password);
 
   return (
-    <div className="registration">
-      <div className="registration__header">Регистрация</div>
+    <div className="authorization">
+      <div className="authorization__header">Регистрация</div>
       <Input
         value={email}
         setValue={setEmail}
@@ -25,8 +25,10 @@ const Registration: React.FC = () => {
         type="password"
         placeholder="Введите пароль..."
       />
-      <button className="registration__btn" onClick={() => registration(email, password)}>
-        Войти
+      <button
+        className="authorization__btn"
+        onClick={() => registration(email, password)}>
+        Зарегистрироваться
       </button>
     </div>
   );
