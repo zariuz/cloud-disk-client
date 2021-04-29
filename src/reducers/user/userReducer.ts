@@ -3,7 +3,7 @@ const defaultState = {
   isAuth: false,
 };
 
-export default function userReducer(state = defaultState, action) {
+export default function userReducer(state = defaultState, action: any) {
   switch (action.type) {
     default:
       return state;
