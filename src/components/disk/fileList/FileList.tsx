@@ -1,11 +1,11 @@
 import React from 'react';
-import './fileList.css';
+import './fileList.scss';
 import {useSelector} from 'react-redux';
 import File from './file/File';
 
-const FileList = () => {
-  const files = useSelector((state) => state.files.files).map((file) => (
-    <File key={file.id} file={file} />
+const FileList: React.FC = () => {
+  const files = useSelector((state: any) => state.files.files).map((file: any) => (
+    <File key={file.name} file={file} />
   ));
 
   return (

@@ -1,8 +1,13 @@
 import React from 'react';
-import './file.css';
+import './file.scss';
 import dirLogo from '../../../../assets/img/dir.svg';
 import fileLogo from '../../../../assets/img/file.svg';
-const File = ({file}) => {
+
+type FileProps = {
+  file: any;
+};
+
+const File: React.FC<FileProps> = ({file}) => {
   return (
     <div className="file">
       <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file__img" />

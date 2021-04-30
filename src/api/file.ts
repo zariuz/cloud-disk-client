@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {setFiles} from '../reducers/file/fileReducer';
+import {addFile, setFiles} from '../reducers/file/fileReducer';
 
-export function getFiles(dirId: any) {
+export function getFiles(dirId: string) {
   return async (dispatch: any) => {
     try {
       const response = await axios.get(
@@ -11,6 +11,27 @@ export function getFiles(dirId: any) {
         },
       );
       dispatch(setFiles(response.data));
+    } catch (e) {
+      alert(e.response.data.message);
+    }
+  };
+}
+
+export function createDir(dirId: string, name: string) {
+  return async (dispatch: any) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/files`,
+        {
+          name,
+          parent: dirId,
+          type: 'dir',
+        },
+        {
+          headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+        },
+      );
+      dispatch(addFile(response.data));
     } catch (e) {
       alert(e.response.data.message);
     }

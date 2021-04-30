@@ -8,7 +8,7 @@ import {auth} from './api/user';
 import Disk from './components/disk/Disk';
 import './app.scss';
 
-const App = () => {
+const App: React.FC = () => {
   const isAuth = useSelector((state: any) => state.user.isAuth);
   const dispatch = useDispatch();
 
