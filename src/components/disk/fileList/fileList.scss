@@ -5,7 +5,6 @@
     display: grid;
     grid-template-columns: 1fr 4fr repeat(4, 1fr);
   }
-
   &__name {
     grid-column-start: 2;
   }
@@ -16,5 +15,8 @@
   &__size {
     grid-column-start: 6;
     justify-self: center;
+  }
+  &__empty {
+    padding: 10px;
   }
 }
