@@ -12,6 +12,8 @@ const Popup: React.FC = () => {
 
   function createHandler() {
     dispatch(createDir(currentDir, dirName));
+    setDirName('');
+    dispatch(setPopupDisplay('none'));
   }
 
   return (
