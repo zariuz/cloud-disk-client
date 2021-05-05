@@ -1,5 +1,10 @@
 import axios from 'axios';
-import {addFile, setFiles} from '../reducers/file/fileReducer';
+import {addFile, setFiles, deleteFileAction} from '../reducers/file/fileReducer';
+import {
+  addUploadFile,
+  changeUploadFile,
+  showUploader,
+} from '../reducers/upload/uploadReducer';
 
 export function getFiles(dirId: string) {
   return async (dispatch: any) => {
@@ -46,6 +51,9 @@ export function uploadFile(file: any, dirId: string) {
       if (dirId) {
         formData.append('parent', dirId);
       }
+      const uploadFile = {name: file.name, progress: 0, id: Date.now()};
+      dispatch(showUploader());
+      dispatch(addUploadFile(uploadFile));
       const response = await axios.post(
         `http://localhost:5000/api/files/upload`,
         formData,
@@ -56,17 +64,18 @@ export function uploadFile(file: any, dirId: string) {
               ? progressEvent.total
               : progressEvent.target.getResponseHeader('content-length') ||
                 progressEvent.target.getResponseHeader('x-decompressed-content-length');
-            console.log('total', totalLength);
             if (totalLength) {
-              let progress = Math.round((progressEvent.loaded * 100) / totalLength);
-              console.log(progress);
+              uploadFile.progress = Math.round(
+                (progressEvent.loaded * 100) / totalLength,
+              );
+              dispatch(changeUploadFile(uploadFile));
             }
           },
         },
       );
       dispatch(addFile(response.data));
     } catch (e) {
-      alert(e.response.data.message);
+      alert(e?.response?.data?.message);
     }
   };
 }
@@ -90,4 +99,23 @@ export async function downloadFile(file: any) {
     link.click();
     link.remove();
   }
+}
+
+export function deleteFile(file: any) {
+  return async (dispatch: any) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/files?id=${file._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        },
+      );
+      dispatch(deleteFileAction(file._id));
+      alert(response.data.message);
+    } catch (e) {
+      alert(e?.response?.data?.message);
+    }
+  };
 }

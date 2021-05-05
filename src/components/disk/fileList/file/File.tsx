@@ -4,7 +4,7 @@ import dirLogo from '../../../../assets/img/dir.svg';
 import fileLogo from '../../../../assets/img/file.svg';
 import {useDispatch, useSelector} from 'react-redux';
 import {pushToStack, setCurrentDir} from '../../../../reducers/file/fileReducer';
-import {downloadFile} from '../../../../api/file';
+import {deleteFile, downloadFile} from '../../../../api/file';
 
 type FileProps = {
   file: any;
@@ -26,6 +26,11 @@ const File: React.FC<FileProps> = ({file}) => {
     downloadFile(file);
   }
 
+  function deleteClickHandler(e: any) {
+    e.stopPropagation();
+    dispatch(deleteFile(file));
+  }
+
   return (
     <div className="file" onClick={() => openDirHandler(file)}>
       <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file__img" />
@@ -39,7 +44,9 @@ const File: React.FC<FileProps> = ({file}) => {
           download
         </button>
       )}
-      <button className="file__btn file__delete">delete</button>
+      <button onClick={(e) => deleteClickHandler(e)} className="file__btn file__delete">
+        delete
+      </button>
     </div>
   );
 };
