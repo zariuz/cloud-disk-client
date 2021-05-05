@@ -9,13 +9,15 @@ import Uploader from './uploader/Uploader';
 
 const Disk: React.FC = () => {
   const dispatch = useDispatch();
-  const [dragEnter, setDragEnter] = useState(false);
   const currentDir = useSelector((state: any) => state.files.currentDir);
+  const loader = useSelector((state: any) => state.app.loader);
   const dirStack = useSelector((state: any) => state.files.dirStack);
+  const [dragEnter, setDragEnter] = useState(false);
+  const [sort, setSort] = useState('type');
 
   useEffect(() => {
-    dispatch(getFiles(currentDir));
-  }, [currentDir]);
+    dispatch(getFiles(currentDir, sort));
+  }, [currentDir, sort]);
 
   function showPopupHandler() {
     dispatch(setPopupDisplay('flex'));
@@ -51,6 +53,14 @@ const Disk: React.FC = () => {
     setDragEnter(false);
   }
 
+  if (loader) {
+    return (
+      <div className="loader">
+        <div className="lds-dual-ring"></div>
+      </div>
+    );
+  }
+
   return !dragEnter ? (
     <div
       className="disk"
@@ -80,6 +90,14 @@ const Disk: React.FC = () => {
             className="disk__upload-input"
           />
         </div>
+        <select
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+          className="disk__select">
+          <option value="name">По имени</option>
+          <option value="type">По типу</option>
+          <option value="date">По дате</option>
+        </select>
       </div>
       <FileList />
       <Popup />

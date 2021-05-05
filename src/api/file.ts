@@ -5,19 +5,30 @@ import {
   changeUploadFile,
   showUploader,
 } from '../reducers/upload/uploadReducer';
+import {hideLoader, showLoader} from '../reducers/appReducer';
 
-export function getFiles(dirId: string) {
+export function getFiles(dirId: string, sort?: string) {
   return async (dispatch: any) => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/files${dirId ? '?parent=' + dirId : ''}`,
-        {
-          headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
-        },
-      );
+      dispatch(showLoader());
+      let url = `http://localhost:5000/api/files`;
+      if (dirId) {
+        url = `http://localhost:5000/api/files?parent=${dirId}`;
+      }
+      if (sort) {
+        url = `http://localhost:5000/api/files?sort=${sort}`;
+      }
+      if (dirId && sort) {
+        url = `http://localhost:5000/api/files?parent=${dirId}&sort=${sort}`;
+      }
+      const response = await axios.get(url, {
+        headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+      });
       dispatch(setFiles(response.data));
     } catch (e) {
       alert(e.response.data.message);
+    } finally {
+      dispatch(hideLoader());
     }
   };
 }
@@ -116,6 +127,26 @@ export function deleteFile(file: any) {
       alert(response.data.message);
     } catch (e) {
       alert(e?.response?.data?.message);
+    }
+  };
+}
+
+export function searchFiles(search: string) {
+  return async (dispatch: any) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/files/search?search=${search}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        },
+      );
+      dispatch(setFiles(response.data));
+    } catch (e) {
+      alert(e?.response?.data?.message);
+    } finally {
+      dispatch(hideLoader());
     }
   };
 }

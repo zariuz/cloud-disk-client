@@ -4,11 +4,13 @@ import thunk from 'redux-thunk';
 import userReducer from './user/userReducer';
 import fileReducer from './file/fileReducer';
 import uploadReducer from './upload/uploadReducer';
+import appReducer from './appReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
   files: fileReducer,
   upload: uploadReducer,
+  app: appReducer,
 });
 
 export const store = createStore(
