@@ -6,6 +6,7 @@ import Login from './components/authorization/Login';
 import {useDispatch, useSelector} from 'react-redux';
 import {auth} from './api/user';
 import Disk from './components/disk/Disk';
+import Profile from './components/profile/Profile';
 import './app.scss';
 
 const App: React.FC = () => {
@@ -30,6 +31,7 @@ const App: React.FC = () => {
           ) : (
             <Switch>
               <Route exact path="/" component={Disk} />
+              <Route exact path="/profile" component={Profile} />
               <Redirect to="/" />
             </Switch>
           )}

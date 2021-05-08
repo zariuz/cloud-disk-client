@@ -6,13 +6,18 @@ import {useDispatch, useSelector} from 'react-redux';
 import {logout} from '../../reducers/user/userReducer';
 import {getFiles, searchFiles} from '../../api/file';
 import {showLoader} from '../../reducers/appReducer';
+import avatarLogo from '../../assets/img/avatar.svg';
+import {API_URL} from '../../config';
 
 const Navbar: React.FC = () => {
   const isAuth = useSelector((state: any) => state.user.isAuth);
   const currentDir = useSelector((state: any) => state.files.currentDir);
+  const currentUser = useSelector((state: any) => state.user.currentUser);
   const dispatch = useDispatch();
   const [searchName, setSearchName] = useState('');
   const [searchTimeout, setSearchTimeout] = useState(false);
+
+  const avatar = currentUser.avatar ? `${API_URL + currentUser.avatar}` : avatarLogo;
 
   function searchChangeHandler(e: any) {
     setSearchName(e.target.value);
@@ -65,6 +70,11 @@ const Navbar: React.FC = () => {
           <div className="navbar__login" onClick={() => dispatch(logout())}>
             Выход
           </div>
+        )}
+        {isAuth && (
+          <NavLink to="/profile">
+            <img className="navbar__avatar" src={avatar} alt="" />
+          </NavLink>
         )}
       </div>
     </div>
