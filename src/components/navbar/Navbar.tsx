@@ -45,8 +45,10 @@ const Navbar: React.FC = () => {
   return (
     <div className="navbar">
       <div className="container">
-        <img src={Logo} alt="" className="navbar__logo" />
-        <div className="navbar__header">MERN CLOUD</div>
+        <NavLink to="/" className="navbar__logo">
+          <img src={Logo} alt="" className="navbar__img" />
+          <div className="navbar__header">MERN CLOUD</div>
+        </NavLink>
         {isAuth && (
           <input
             value={searchName}
