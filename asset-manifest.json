@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/cloud-disk-client/static/css/main.a71838a5.chunk.css",
-    "main.js": "/cloud-disk-client/static/js/main.24fa24a9.chunk.js",
-    "main.js.map": "/cloud-disk-client/static/js/main.24fa24a9.chunk.js.map",
+    "main.js": "/cloud-disk-client/static/js/main.4ea501e6.chunk.js",
+    "main.js.map": "/cloud-disk-client/static/js/main.4ea501e6.chunk.js.map",
     "runtime-main.js": "/cloud-disk-client/static/js/runtime-main.6885459c.js",
     "runtime-main.js.map": "/cloud-disk-client/static/js/runtime-main.6885459c.js.map",
-    "static/js/2.060fdbe0.chunk.js": "/cloud-disk-client/static/js/2.060fdbe0.chunk.js",
-    "static/js/2.060fdbe0.chunk.js.map": "/cloud-disk-client/static/js/2.060fdbe0.chunk.js.map",
+    "static/js/2.62d697a3.chunk.js": "/cloud-disk-client/static/js/2.62d697a3.chunk.js",
+    "static/js/2.62d697a3.chunk.js.map": "/cloud-disk-client/static/js/2.62d697a3.chunk.js.map",
     "index.html": "/cloud-disk-client/index.html",
     "static/css/main.a71838a5.chunk.css.map": "/cloud-disk-client/static/css/main.a71838a5.chunk.css.map",
-    "static/js/2.060fdbe0.chunk.js.LICENSE.txt": "/cloud-disk-client/static/js/2.060fdbe0.chunk.js.LICENSE.txt",
+    "static/js/2.62d697a3.chunk.js.LICENSE.txt": "/cloud-disk-client/static/js/2.62d697a3.chunk.js.LICENSE.txt",
     "static/media/avatar.1af8adc2.svg": "/cloud-disk-client/static/media/avatar.1af8adc2.svg",
     "static/media/dir.4593101f.svg": "/cloud-disk-client/static/media/dir.4593101f.svg",
     "static/media/file.8e976cc0.svg": "/cloud-disk-client/static/media/file.8e976cc0.svg",
@@ -18,8 +18,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.6885459c.js",
-    "static/js/2.060fdbe0.chunk.js",
+    "static/js/2.62d697a3.chunk.js",
     "static/css/main.a71838a5.chunk.css",
-    "static/js/main.24fa24a9.chunk.js"
+    "static/js/main.4ea501e6.chunk.js"
   ]
 }
