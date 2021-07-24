@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import {Route, Switch, Redirect, HashRouter} from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Registration from './components/authorization/Registration';
 import Login from './components/authorization/Login';
@@ -18,7 +18,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="app">
         <Navbar />
         <div className="wrap">
@@ -37,7 +37,7 @@ const App: React.FC = () => {
           )}
         </div>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
